@@ -1,0 +1,31 @@
+# NBS presentation script to show a countdown in the center of the screen
+# 
+# Trial definition:
+#     trial{
+#     	picture countdown_pic;
+#       code = "calibration";
+#     } countdownTrial;
+#
+# Picture definition:
+#     picture {
+#       text { 
+#     		caption = " ";
+#       }countdown_text;
+#       x = 0; y = 0;
+#     } countdown_pic;
+#
+#
+#
+sub countdown( int count ) begin
+    loop 
+        int time = clock.time()
+    until count == 0 begin
+        countdown_text.set_caption( string( count ) );
+        countdown_text.redraw();
+        countdownTrial.present();
+        time = time + 1000;
+        wait_until( time );
+        count = count - 1
+    end;
+    default.present()
+end;
