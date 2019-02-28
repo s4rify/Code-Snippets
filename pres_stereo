@@ -1,0 +1,18 @@
+# if the stimuli are mono and Presentation needs to run in exclusive mode, this is how the sound is presented on two channels (stereo)
+
+wavefile wav = new wavefile("filename.wav");
+wav.load();
+array< asg::waveform > chans[2];
+loop int j = 1 until j > chans.count() begin
+		chans[j] = wav.get_channel(1); # always get the first channel, this is where the sound is
+		j = j + 1;
+end;
+# adapt the wavefile object and add the channels
+wav = new wavefile(chans);
+# create a sound object with the new wavefile object
+sound s = new sound(wav);
+
+# add the sound to some stimulus event
+someEvent.set_stimulus(s);
+# present the trial which contains the stimulus event
+someTrial.present();
