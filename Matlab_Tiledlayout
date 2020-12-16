@@ -1,0 +1,7 @@
+% Alternative to subplots! 
+
+t = tiledlayout("flow");
+t.Title.String = "TiledLayout Example";
+nexttile; surf(X,Y,Z); title("Tile 1");
+nexttile; contour(X,Y,Z); title("Tile 2");
+nexttile; imagesc(Z); title("Tile 3");
